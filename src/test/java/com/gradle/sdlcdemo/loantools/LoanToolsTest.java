@@ -17,14 +17,37 @@ package com.gradle.sdlcdemo.loantools;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
-public class LoanToolsTest {
+class LoanToolsTest {
 
     @Test
-    void bootstrapTest() {
+    void testPaymentWithInterest() {
         LoanTools loanTools = new LoanTools();
+        BigDecimal payment = loanTools.calculatePayment(100000, 3.5, 30);
+        assertThat(payment).isEqualTo(new BigDecimal("449.04"));
+    }
 
-        assertThat(loanTools.isTrue()).isTrue();
+    @Test
+    void testPaymentWithoutInterest() {
+        LoanTools loanTools = new LoanTools();
+        BigDecimal payment = loanTools.calculatePayment(100000, 0.0, 30);
+        assertThat(payment).isEqualTo(new BigDecimal("277.78"));
+    }
+
+    @Test
+    void testPeriodsWithInterest() {
+        LoanTools loanTools = new LoanTools();
+        int nper = loanTools.calculatePeriods(100000, 3.5, 449.04);
+        assertThat(nper).isEqualTo(360);
+    }
+
+    @Test
+    void testPeriodsWithoutInterest() {
+        LoanTools loanTools = new LoanTools();
+        int nper = loanTools.calculatePeriods(100000, 0.0, 277.78);
+        assertThat(nper).isEqualTo(360);
     }
 }
