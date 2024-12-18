@@ -1,0 +1,29 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  MAVEN_OPTS: >-
+    -Dhttps.protocols=TLSv1.2
+    -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+  MAVEN_CLI_OPTS: >-
+    -DskipTests
+
+build-JAR:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS package
+
+test-code:
+  stage: test
+  script:
+    - mvn test
+
+deploy:
+  stage: deploy
+  image: maven:3.6.0-jdk-8
+  script:
+    - 'mvn deploy -s ci_settings.xml'
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
