@@ -3,4 +3,7 @@
     <url>https://develocity-field.gradle.com</url>
     <accessKey>qwktwlzff2pitry24oem2aue76ms352bpk6ttshaiybqh7hte44a</accessKey>
   </server>
+  <buildScan>
+    <backgroundBuildScanUpload>#{env['CI'] == null}</backgroundBuildScanUpload>
+  </buildScan>
 </develocity>
