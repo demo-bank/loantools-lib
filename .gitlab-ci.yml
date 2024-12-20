@@ -1,5 +1,5 @@
 default:
-  image: maven:3.6.3-jdk-8
+  image: eclipse-temurin:8-jre-alpine
 
 stages:
   - build
@@ -16,16 +16,16 @@ variables:
 build-JAR:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS package
+    - './mvnw $MAVEN_CLI_OPTS package'
 
 test-code:
   stage: test
   script:
-    - mvn test
+    - './mvnw test'
 
 deploy:
   stage: deploy
   script:
-    - 'mvn deploy -s ci_settings.xml'
+    - './mvnw deploy -s ci_settings.xml'
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
