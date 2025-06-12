@@ -13,7 +13,6 @@ env:
   JAVA_VERSION: 21
   PROJECT_NAME: SCIMple
   PROJECT_NAME_LOWER: scimple
-  MAVEN_ARGS: --batch-mode --no-transfer-progress
 
 jobs:
   build:
@@ -31,6 +30,6 @@ jobs:
           distribution: zulu
           cache: maven
       - name: Build and publish Maven artifacts
-        run: ./mvnw deploy
+        run: ./mvnw deploy --batch-mode --no-transfer-progress
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
