@@ -61,23 +61,16 @@
     </dependency>
   </dependencies>
 
-  <repositories>
-    <repository>
-      <id>gitlab-maven</id>
-      <!--suppress UnresolvedMavenProperty -->
-      <url>${CI_API_V4_URL}/groups/99234385/-/packages/maven</url>
-    </repository>
-  </repositories>
   <distributionManagement>
     <repository>
-      <id>gitlab-maven</id>
-      <!--suppress UnresolvedMavenProperty -->
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/demo-bank/loantools-lib</url>
     </repository>
     <snapshotRepository>
-      <id>gitlab-maven</id>
-      <!--suppress UnresolvedMavenProperty -->
-      <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/demo-bank/loantools-lib</url>
     </snapshotRepository>
   </distributionManagement>
 
