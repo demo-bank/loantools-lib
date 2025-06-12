@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  packages: write
+
 env:
   JAVA_VERSION: 21
   PROJECT_NAME: SCIMple
@@ -28,6 +31,6 @@ jobs:
           distribution: zulu
           cache: maven
       - name: Build and publish Maven artifacts
-        run: mvn deploy
+        run: ./mvnw deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
